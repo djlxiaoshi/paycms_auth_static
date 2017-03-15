@@ -102,17 +102,11 @@
                 <span v-for="child in scope.row.appid">{{child}}<br></span>
               </template>
             </el-table-column>
-            <el-table-column label="权限内容" align="center">
-              <el-table-column label="权限1" align="center">
+            <el-table-column label="权限内容" align="center" width="240">
                 <template scope="scope">
                   <el-checkbox v-model="scope.row.deliverRefund">发货退款</el-checkbox>
-                </template>
-              </el-table-column>
-              <el-table-column label="权限2" align="center">
-                <template scope="scope">
                   <el-checkbox v-model="scope.row.warningSetting">报警设置</el-checkbox>
                 </template>
-              </el-table-column>
             </el-table-column>
             <el-table-column label="业务审核人" prop="assessor" align="center"></el-table-column>
             <el-table-column label="操作" align="center">
@@ -155,17 +149,11 @@
                 <span v-for="child in scope.row.appid">{{child}}<br></span>
               </template>
             </el-table-column>
-            <el-table-column label="权限内容" align="center">
-              <el-table-column label="权限1" align="center">
-                <template scope="scope">
-                  <el-checkbox v-model="scope.row.deliverRefund">发货退款</el-checkbox>
-                </template>
-              </el-table-column>
-              <el-table-column label="权限2" align="center">
-                <template scope="scope">
-                  <el-checkbox v-model="scope.row.warningSetting">报警设置</el-checkbox>
-                </template>
-              </el-table-column>
+            <el-table-column label="权限内容" align="center" width="240">
+              <template scope="scope">
+                <el-checkbox v-model="scope.row.deliverRefund">发货退款</el-checkbox>
+                <el-checkbox v-model="scope.row.warningSetting">报警设置</el-checkbox>
+              </template>
             </el-table-column>
             <el-table-column label="业务审核人" prop="assessor" align="center"></el-table-column>
             <el-table-column label="操作" align="center">
@@ -215,7 +203,6 @@
         this.showFlag = !this.showFlag
       },
       showPrompt ($event) {
-        console.log(1)
         if ($event.target.checked) {
           this.$alert('您所申请的内容，将会转到对应的业务审核人审核，如果您申请的内容与自己的工作职责不符，将不会予以通过；请慎重申请，谢谢', '提示', {
             confirmButtonText: '确定'

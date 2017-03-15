@@ -7,7 +7,12 @@
     </el-row>
     <el-row>
       <el-row>
-        <el-col :xs="24" :sm="3" :md="2" :lg="2">操作权限赋予：</el-col>
+        <el-col :xs="24" :sm="3" :md="2" :lg="2">
+        <!--此处接入选择器-->
+          <div class="select-auth-wrap">
+            <select-auth></select-auth>
+          </div>
+        </el-col>
         <el-col :xs="24" :sm="21" :md="22" :lg="22">
           <!-- 选择器 -->
         </el-col>
@@ -104,6 +109,7 @@
 </template>
 
 <script>
+import SelectAuth from 'components/SelectAuth'
 export default {
   name: 'MemberOperation',
   data () {
@@ -280,6 +286,9 @@ export default {
         })
       })
     }
+  },
+  components: {
+    SelectAuth
   }
 }
 </script>

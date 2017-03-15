@@ -224,20 +224,19 @@
         .btn-wrap
           float: right
       .box-body
+        display: flex
         .left-part
-          display: inline-block
+          flex: 140px
           height: 100%
           text-align: center
-          vertical-align: top
           border-right: 5px solid #e5e5e5
           padding-bottom: 20px
           li
             padding: 10px
         .right-part
-          display: inline-block
+          flex: 0 0 1
           height: 100%
           width: 400px
-          vertical-align: top
           padding: 10px 20px
           .select-auth-input
             margin: 10px 0

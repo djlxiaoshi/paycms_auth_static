@@ -10,26 +10,30 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 // 权限申请数据
-var authApplyData = require('../src/mock/apply.json');
+var authApplyData = require('../mock/apply.json');
 
 // 权限菜单选项数据
 // var menuData = authApplyData.parentMenu;
 
 // 我的权限数据
-var myAuthData = require('../src/mock/myauth.json');
+var myAuthData = require('../mock/myauth.json');
 
 // 我的审批  数据
-var approvalData = require('../src/mock/approval.json');
+var approvalData = require('../mock/approval.json');
 
 // 权限管理数据
-var manageData = require('../src/mock/manage.json');
+var manageData = require('../mock/manage.json');
+
+// app加载时获取的新消息数据
+var newsData = require('../mock/app.json');
 
 var apiRoutes = express.Router();
 
 // 获取  我的权限  和 我的审批中的 新消息数目
 apiRoutes.get('/app/newMsg', function (req, res) {
   res.json({
-    errno: 0
+    errno: 0,
+    data: newsData.newMsg
   });
 });
 

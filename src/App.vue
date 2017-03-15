@@ -36,24 +36,6 @@ export default {
   name: 'app',
   data () {
     return {
-      lists: [
-        {
-          name: '权限申请',
-          address: 'apply'
-        },
-        {
-          name: '我的权限',
-          address: 'myauth'
-        },
-        {
-          name: '我的审批',
-          address: 'approval'
-        },
-        {
-          name: '权限管理',
-          address: 'manage'
-        }
-      ],
       newMsg: {}
     }
   },
@@ -69,9 +51,7 @@ export default {
   },
   created () {
     this.$http.get('/api/app/newMsg').then(response => {
-      // 返回一个对象{"pending":3, "reject": 7, "arvView": 4, "arvOpt": 5}
-      // this.newMsg = response.body.data
-      this.newMsg = {'pending': 3, 'reject': 7, 'arvView': 4, 'arvOpt': 5}
+      this.newMsg = response.body.data
     }, response => {
       // error callback
     })
