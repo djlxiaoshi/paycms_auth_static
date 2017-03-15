@@ -21,6 +21,9 @@ var myAuthData = require('../src/mock/myauth.json');
 // 我的审批  数据
 var approvalData = require('../src/mock/approval.json');
 
+// 权限管理数据
+var manageData = require('../src/mock/manage.json');
+
 var apiRoutes = express.Router();
 
 // 获取  我的权限  和 我的审批中的 新消息数目
@@ -167,5 +170,109 @@ apiRoutes.post('/approval/rejectBatch', function (req, res) {
     errno: 0
   });
 });
+
+
+/* --------------------权限管理------------------- */
+apiRoutes.get('/manageIndex', function(req, res) {
+  res.json(
+    {
+      "role": manageData.role,
+      "member": manageData.member
+    }
+  )
+})
+
+apiRoutes.get('/roleAdd', function(req, res) {
+  res.json(
+    {
+      "menu": manageData.menu
+    }
+  )
+})
+
+apiRoutes.post('/roleAddSubmit', function(req, res) {
+  // req: {"role":"角色","menuData":[{"firstMenu":"双皮奶","secondMenu":"双皮2奶"},{"firstMenu":"蚵仔煎","secondMenu":"双12皮奶"}],"remark":"备注"}
+  manageData.role.push({
+    "id": 8,
+    "role": "特级人员",
+    "checked": "订单查询、欺诈订单、产品配置、收入汇总、统计信息、版本统计信息、应用警报设置、权限申请",
+    "remark": "添加的~"
+  })
+  res.send({msg: true})
+})
+
+apiRoutes.get('/roleDel', function(req, res) {
+  // 根据id删除角色
+  console.log('id: ' + req.query.id)
+  res.send({msg: true})
+})
+
+apiRoutes.get('/roleModify', function(req, res) {
+  // 根据id返回相应数据，menu是选择框内容
+  console.log('id: ' + req.query.id)
+  res.json(
+    {
+      "role": "修改后的角色",
+      "menu": manageData.menu,
+      "menuData": [
+        {
+          "firstMenu": "蚵仔煎",
+          "secondMenu": "双45皮奶"
+        }, {
+          "firstMenu": "龙须面",
+          "secondMenu": "双45皮奶"
+        }
+      ],
+      "remark": "3234"
+    })
+})
+
+apiRoutes.post('/roleModifySubmit', function(req, res) {
+  // req: {"role":"角色","menuData":[{"firstMenu":"双皮奶","secondMenu":"双皮2奶"},{"firstMenu":"蚵仔煎","secondMenu":"双12皮奶"}],"remark":"备注"}
+  manageData.role.shift()
+  res.send({msg: true})
+})
+
+apiRoutes.get('/roleMenu', function(req, res) {
+  // 根据id返回相应数据
+  console.log('id: ' + req.query.id)
+  res.json(
+    {
+      "menu": manageData.menu,
+      "menuData": manageData.menuData
+    })
+})
+
+apiRoutes.post('/roleMenuAdd', function(req, res) {
+  // {"id":["1","2","3","4","5"]}
+  manageData.menuData[1].operation = true
+  res.send({msg: true})
+})
+apiRoutes.post('/roleMenuDel', function(req, res) {
+  // {"id":["1","2","3","4","5"]}
+  manageData.menuData[1].operation = false
+  res.send({msg: true})
+})
+
+apiRoutes.get('/roleMember', function(req, res) {
+  // 根据id返回相应数据
+  console.log('id: ' + req.query.id)
+  res.json(
+    {
+      "member": manageData.member
+    })
+})
+
+apiRoutes.post('/roleMemberAdd', function(req, res) {
+  // {"id":["1","2","3","4","5"]}
+  manageData.menuData[1].operation = true
+  res.send({msg: true})
+})
+
+apiRoutes.post('/roleMemberDel', function(req, res) {
+  // {"id":["1","2","3","4","5"]}
+  manageData.menuData[1].operation = false
+  res.send({msg: true})
+})
 
 module.exports = apiRoutes;

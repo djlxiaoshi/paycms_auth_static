@@ -140,7 +140,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.$http.get('http://localhost:3000/roleDel?id=' + rows[index].id).then((res) => {
+        this.$http.get('/api/roleDel?id=' + rows[index].id).then((res) => {
           if (res.data.msg) {
             rows.splice(index, 1)
             this.$message({
@@ -175,7 +175,7 @@ export default {
     },
     // 加载数据
     load () {
-      this.$http.get('http://localhost:3000/manageIndex').then((res) => {
+      this.$http.get('/api/manageIndex').then((res) => {
         this.tableRoleData = res.data.role.slice()
         this.tableMemberData = res.data.member.slice()
       }, (res) => {

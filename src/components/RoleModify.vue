@@ -122,7 +122,7 @@ export default {
     },
     // 修改角色
     open () {
-      this.$http.get('http://localhost:3000/roleModify?id=' + this.id).then((res) => {
+      this.$http.get('/api/roleModify?id=' + this.id).then((res) => {
         this.role = res.data.role
         this.menuData = res.data.menuData
         this.remark = res.data.remark
@@ -166,7 +166,7 @@ export default {
         this.$message.error('菜单不能为空！')
         return
       }
-      this.$http.post('http://localhost:3000/roleModifySubmit', {
+      this.$http.post('/api/roleModifySubmit', {
         'role': this.role,
         'menuData': this.menuData,
         'remark': this.remark

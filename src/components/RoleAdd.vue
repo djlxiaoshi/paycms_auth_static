@@ -119,7 +119,7 @@ export default {
     },
     // 添加角色
     roleAdd () {
-      this.$http.get('http://localhost:3000/roleAdd').then((res) => {
+      this.$http.get('/api/roleAdd').then((res) => {
         this.options = res.data.menu.slice()
         for (let data of this.options) {
           data.label = data.value
@@ -149,7 +149,7 @@ export default {
         this.$message.error('菜单不能为空！')
         return
       }
-      this.$http.post('http://localhost:3000/roleAddSubmit', {
+      this.$http.post('/api/roleAddSubmit', {
         'role': this.role,
         'menuData': this.menuData,
         'remark': this.remark
