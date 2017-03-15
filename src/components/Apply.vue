@@ -74,6 +74,7 @@
       <el-tab-pane label="操作权限" name="second">
         <!--权限选择器-->
         <div class="select-auth-wrap">
+          <span>应用版本：</span>
           <select-auth v-on:addSelData="addSelData"></select-auth>
         </div>
         <!--待添加权限-->
@@ -377,7 +378,7 @@ export default {
   margin: 10px;
 }
 .applicant-msg{
-  line-height: 34px
+  line-height: 28px
 }
 .applicant-msg>span:first-child{
   display: block;
@@ -385,7 +386,7 @@ export default {
 }
 .authority,
 .view-content{
-  margin: 10px 0 20px 0;
+  margin: 5px 0 10px 0;
   line-height: 34px;
 }
 .authority>.el-col:first-child,

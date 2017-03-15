@@ -6,10 +6,11 @@
       {{role}}
     </el-row>
     <el-row>
-      <el-row>
-        <el-col :xs="24" :sm="3" :md="2" :lg="2">操作权限赋予：</el-col>
-        <el-col :xs="24" :sm="21" :md="22" :lg="22">
+      <el-row class="selectAuth">
+        <el-col>
+          <span>操作权限赋予：</span>
           <!-- 选择器 -->
+          <select-auth v-on:addSelData="addSelData"></select-auth>
         </el-col>
       </el-row>
       <!-- 添加列表 -->
@@ -104,6 +105,8 @@
 </template>
 
 <script>
+import SelectAuth from 'components/SelectAuth'
+
 export default {
   name: 'MemberOperation',
   data () {
@@ -203,6 +206,9 @@ export default {
       ]
     }
   },
+  components: {
+    SelectAuth
+  },
   methods: {
     // 更多
     more () {
@@ -279,6 +285,21 @@ export default {
           message: '已取消提交'
         })
       })
+    },
+    addSelData (data) {
+      // 加入等待队列
+      //  这里要对数据格式做些处理，然后push到waitingAdd数组中
+      let _dataCache = {}
+      _dataCache.game = data[0]['isAll'] ? ['全部游戏'] : data[0]['checked']
+      _dataCache.platform = data[1]['isAll'] ? ['全部平台'] : data[1]['checked']
+      _dataCache.hall = data[2]['isAll'] ? ['全部'] : data[2]['checked']
+      _dataCache.terminal = data[3]['isAll'] ? ['全部'] : data[3]['checked']
+      _dataCache.appPackage = data[4]['isAll'] ? ['全部'] : data[4]['checked']
+      _dataCache.appid = data[5]['isAll'] ? ['全部'] : data[5]['checked']
+      _dataCache.deliverRefund = false
+      _dataCache.warningSetting = false
+      console.dir(_dataCache)
+      this.waitingAdd.push(_dataCache)
     }
   }
 }
@@ -316,6 +337,9 @@ table td{
   background: red;
 }
 .button{
+  margin: 10px 0;
+}
+.selectAuth{
   margin: 10px 0;
 }
 </style>
