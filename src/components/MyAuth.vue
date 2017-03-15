@@ -1,3 +1,4 @@
+<!-- 我的权限 -> 一级路由 -->
 <template>
   <div class="my-auth-wrap">
     <el-tabs value="ownedAuth" @tab-click="getMyAuthData">

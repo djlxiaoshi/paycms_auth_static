@@ -1,3 +1,4 @@
+<!-- 权限申请 -> 一级路由 -->
 <template>
   <div class="auth-application">
     <div class="applicant-msg">
