@@ -1,6 +1,6 @@
 # paycms_auth_static
 
-> A Vue.js project
+> permission management system
 
 ## Build Setup
 

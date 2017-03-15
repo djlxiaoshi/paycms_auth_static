@@ -1,3 +1,4 @@
+<!-- 权限申请/权限管理 -> 选择器 -> 子组件 -->
 <template>
   <div class="select-application">
     <span class="">操作权限</span>
