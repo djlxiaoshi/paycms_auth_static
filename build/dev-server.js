@@ -22,7 +22,7 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 // https://github.com/chimurai/http-proxy-middleware
 var proxyTable = config.dev.proxyTable
 
-var apiRoutes = require('../serve/serve')
+var apiRoutes = require('../server/server')
 var app = express()
 app.use('/api', apiRoutes);  //在路径前面添加父路径‘api’，则实际访问路径应该为‘api/seller’
 
@@ -56,14 +56,14 @@ Object.keys(proxyTable).forEach(function (context) {
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
 
-// serve webpack bundle output
+// server webpack bundle output
 app.use(devMiddleware)
 
 // enable hot-reload and state-preserving
 // compilation error display
 app.use(hotMiddleware)
 
-// serve pure static assets
+// server pure static assets
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 

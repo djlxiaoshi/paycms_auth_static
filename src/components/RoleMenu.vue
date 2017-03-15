@@ -95,7 +95,7 @@ export default {
       this.isIndeterminate = false
       this.checkList = []
       this.firstOptions = []
-      this.$http.get('http://localhost:3000/roleMenu?id=' + id).then((res) => {
+      this.$http.get('/api/roleMenu?id=' + id).then((res) => {
         this.options = res.data.menu.slice()
         for (let i = 0; i < this.options.length; i++) {
           let value = this.options[i].value
@@ -157,7 +157,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.$http.post('http://localhost:3000/roleMenuAdd', {
+        this.$http.post('/api/roleMenuAdd', {
           'id': this.checkList
         }).then((res) => {
           if (res.data.msg) {
@@ -187,7 +187,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.$http.post('http://localhost:3000/roleMenuDel', {
+        this.$http.post('/api/roleMenuDel', {
           'id': this.checkList
         }).then((res) => {
           if (res.data.msg) {
