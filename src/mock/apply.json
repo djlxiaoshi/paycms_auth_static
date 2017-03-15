@@ -1,0 +1,173 @@
+{
+  "userMsg": {
+    "name": "李晓龙",
+    "department": "数据支付部"
+  },
+  "viewAuth": [
+    {
+      "id": 1,
+      "authName": "订单查询",
+      "have": true
+    },
+    {
+      "id": 2,
+      "authName": "欺诈订单",
+      "have": true
+    },
+    {
+      "id": 3,
+      "authName": "统计信息",
+      "have": true
+    },
+    {
+      "id": 4,
+      "authName": "产品配置",
+      "have": false
+    },
+    {
+      "id": 5,
+      "authName": "收入汇总",
+      "have": false
+    },
+    {
+      "id": 6,
+      "authName": "应用警报设置",
+      "have": false
+    },
+    {
+      "id": 7,
+      "authName": "财务对账",
+      "have": false
+    }
+  ],
+  "viewAuthApply": {
+    "applyId": 1,
+    "username": "李晓龙",
+    "department": "数据支付部",
+    "role": "前端",
+    "viewAuth": [
+      "权限1",
+      "权限2",
+      "权限3"
+    ],
+    "reason": "这是申请理由"
+  },
+  "operateAuthApply": {
+    "applyId": 1,
+    "username": "李晓龙",
+    "department": "数据支付部",
+    "role": "前端",
+    "operateAuth": [
+      "权限1",
+      "权限2",
+      "权限3"
+    ],
+    "reason": "这是申请理由"
+  },
+  "parentMenu": [
+    {
+      "menuId": 371,
+      "menuName": "game",
+      "labelName": "游戏",
+      "subOpt": [
+        "德州扑克",
+        "斗地主",
+        "地方棋牌",
+        "印尼棋牌",
+        "IPOKER",
+        "四人斗地主",
+        "三公",
+        "麻将",
+        "博定"
+      ]
+    },
+    {
+      "menuId": 372,
+      "menuName": "platform",
+      "labelName": "平台",
+      "subOpt": [
+        "全国平台",
+        "湖北平台",
+        "四川平台",
+        "深圳平台",
+        "广东平台",
+        "海南平台",
+        "澳门平台",
+        "宜宾平台",
+        "宜昌平台",
+        "其他平台"
+      ]
+    },
+    {
+      "menuId": 373,
+      "menuName": "hall",
+      "labelName": "大厅",
+      "subOpt": [
+        "三人厅",
+        "四人厅",
+        "五人厅",
+        "六人厅",
+        "七人厅",
+        "八人厅",
+        "九人厅",
+        "十人厅",
+        "更大厅"
+      ]
+    },
+    {
+      "menuId": 374,
+      "menuName": "terminal",
+      "labelName": "终端",
+      "subOpt": [
+        "IOS",
+        "PC",
+        "ANDRIOD"
+      ]
+    },
+    {
+      "menuId": 375,
+      "menuName": "appPackage",
+      "labelName": "应用包",
+      "subOpt": [
+        "360",
+        "新浪",
+        "腾讯"
+      ]
+    },
+    {
+      "menuId": 376,
+      "menuName": "appid",
+      "labelName": "APPID",
+      "subOpt": [
+        "德州扑克-PC-新浪微博-简体（1232）",
+        "德州扑克-ANDROID-VIVO联运-简体（1333）",
+        "德州扑克-ANDROID-华为联运-简体（1235）",
+        "德州扑克-ANDROID-主版本-简体（1499）",
+        "德州扑克-PC-新浪微博-简体（1432）",
+        "德州扑克-ANDROID-VIVO联运-简体（1353）",
+        "德州扑克-ANDROID-华为联运-简体（1455）"
+      ]
+    }
+  ],
+  "filterData": [
+    {
+      "currentMenu": {
+        "parentMenuId": 371,
+        "parentMenuName": "game"
+      },
+      "filterMsg": {
+        "menuName": "game",
+        "checked": [
+          "德州扑克",
+          "斗地主"
+        ],
+        "isAll": false
+      }
+    }
+  ],
+  "filterResult": [
+    "筛选数据1",
+    "筛选数据2",
+    "筛选数据3"
+  ]
+}
