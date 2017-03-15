@@ -26,7 +26,7 @@
     <el-tabs value="first" style="min-height:400px" @tab-click="tabSwitch">
       <el-tab-pane label="查询权限" name="first">
         <div class="view-content">
-          <table class="ui single line celled table" style="width: 400px;">
+          <table class="my-table">
             <thead>
             <tr>
               <th>ID</th>
@@ -392,8 +392,11 @@ export default {
 .authority>.el-col:nth-child(2){
   font-weight: bold;
 }
-.authority .authority-text{
-  line-height: 1.5rem
+.my-table{
+  width: 400px;
+}
+.my-table td{
+  text-align: center;
 }
 .view-content .more-content{
   display: inline-block
