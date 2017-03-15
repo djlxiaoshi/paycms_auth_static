@@ -101,6 +101,6 @@ export default {
   color: #fff;
 }
 .border-bottom{
-  border-bottom: 1px solid #99A9BF;
+  border-bottom: 1px solid #bfcbd9;
 }
 </style>
