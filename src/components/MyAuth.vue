@@ -296,23 +296,26 @@
   }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
-  @import "../common/css/common.styl"
-  .my-auth-wrap
-    margin: 0 50px;
-    .own-auth
-      h4
-        margin: 10px 0
-    .search-input
-      width: 300px
-      float: right
-      margin-bottom: 10px
-    .view-auth-wrap, .operate-auth-wrap
-      border: 1px solid #e5e5e5
-      margin: 20px
-      .auth-title
-        margin: 15px
-    .pagination-wrap
-      text-align: center
-      margin: 20px
+<style scope>
+.own-auth h4{
+  margin: 10px 0;
+}
+.search-input{
+  width: 300px;
+  float: right;
+  margin-bottom: 10px;
+}
+.view-auth-wrap,
+.operate-auth-wrap{
+  border: 1px solid #e5e5e5;
+  margin: 20px;
+}
+.view-auth-wrap .auth-title,
+.operate-auth-wrap .auth-title{
+  margin: 15px
+}
+.pagination-wrap{
+  text-align: center;
+  margin: 20px;
+}
 </style>

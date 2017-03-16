@@ -2,48 +2,55 @@
 <template>
   <div class="auth-application">
     <div class="applicant-msg">
-      <h5>申请人</h5>
-      <hr>
-      <span class="applicant-name">姓名：{{userMsg.name}}</span>
-      <span class="department">部门：{{userMsg.department}}</span>
+      <span class="border-bottom">申请人</span>
+      <el-row>
+        <el-col :xs="24" :sm="8" :md="6" :lg="5">
+          姓名：
+          <span v-text="userMsg.name"></span>
+          (
+          <span></span>
+          )
+        </el-col>
+        <el-col :xs="24" :sm="12" :md="8" :lg="7">
+          所属部门：
+          <span v-text="userMsg.department"></span>
+        </el-col>
+      </el-row>
     </div>
-    <div class="authority">
-      <p style="line-height: 1.5rem;">
-        <span style="font-weight:700">申请内容：</span>
-        <span style="font-weight:700">应用权限</span>
+    <el-row class="authority">
+      <el-col class="border-bottom">申请内容：</el-col>
+      <el-col :xs="24" :sm="3" :md="2" :lg="2">应用权限：</el-col>
+      <el-col :xs="24" :sm="21" :md="22" :lg="22">
         支付后台APPID权限，会根据数据后台的BPID权限自动开通，如果没有某个应用的appid权限，请自行去data后台开通对应的bpid权限，如果在数据后台开通权限后，在支付后台还是提示无权限，请退出账号，清空浏览器缓存，重新登录一下即可查看；如果有疑问，请及时联系AnneDu，谢谢。
-      </P>
-    </div>
-
-
+      </el-col>
+    </el-row>
     <el-tabs value="first" style="min-height:400px" @tab-click="tabSwitch">
       <el-tab-pane label="查询权限" name="first">
-        <div class="view-content">
-          <table class="ui single line celled table" style="width: 400px;">
+        <div class="view-content" style="width: 400px;">
+          <table class="ui celled table" style="width: 400px;">
             <thead>
-            <tr>
-              <th>ID</th>
-              <th>查看权限</th>
-            </tr>
+              <tr>
+                <th class="six wide center aligned">ID</th>
+                <th class="ten wide center aligned">查看权限</th>
+              </tr>
             </thead>
             <tbody>
             <template v-if="showFlag === false">
-              <tr v-for="(item, index) in viewAuth" v-show="item.have">
-                <td>{{index + 1}}</td>
-                <td>
-                  <el-checkbox :checked="item.have" v-model.sync="item.have" disabled>{{item.authName}}</el-checkbox>
+              <tr v-for="(item, index) in viewAuthData" v-if="item.owned">
+                <td class="center aligned">{{index + 1}}</td>
+                <td style="padding:0 100px;">
+                  <el-checkbox   disabled v-model="item.owned">{{item.authName}}</el-checkbox>
                 </td>
               </tr>
             </template>
             <template v-else>
-              <tr v-for="(item, index) in viewAuth">
-                <td>{{index + 1}}</td>
-                <td>
-                  <el-checkbox :checked="item.have" v-model.sync="item.have" @change="showPrompt">{{item.authName}}</el-checkbox>
+              <tr v-for="(item, index) in viewAuthData">
+                <td class="center aligned">{{index + 1}}</td>
+                <td style="padding:0 100px;">
+                  <el-checkbox v-model="item.owned" @change="showPrompt">{{item.authName}}</el-checkbox>
                 </td>
               </tr>
             </template>
-
             </tbody>
             <tfoot class="full-width" style="text-align: center;">
             <tr>
@@ -67,6 +74,7 @@
       <el-tab-pane label="操作权限" name="second">
         <!--权限选择器-->
         <div class="select-auth-wrap">
+          <span>应用版本：</span>
           <select-auth v-on:addSelData="addSelData"></select-auth>
         </div>
         <!--待添加权限-->
@@ -103,10 +111,10 @@
               </template>
             </el-table-column>
             <el-table-column label="权限内容" align="center" width="240">
-                <template scope="scope">
-                  <el-checkbox v-model="scope.row.deliverRefund">发货退款</el-checkbox>
-                  <el-checkbox v-model="scope.row.warningSetting">报警设置</el-checkbox>
-                </template>
+              <template scope="scope">
+                <el-checkbox v-model="scope.row.deliverRefund">发货退款</el-checkbox>
+                <el-checkbox v-model="scope.row.warningSetting">报警设置</el-checkbox>
+              </template>
             </el-table-column>
             <el-table-column label="业务审核人" prop="assessor" align="center"></el-table-column>
             <el-table-column label="操作" align="center">
@@ -180,7 +188,7 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
   import SelectAuth from 'components/SelectAuth'
   export default {
     data () {
@@ -192,9 +200,10 @@
         checkList: [],
         waitingAdd: [],
         addedData: [],
-        viewAuth: []
+        viewAuthData: []
       }
     },
+    props: ['userId'],
     components: {
       SelectAuth
     },
@@ -203,6 +212,7 @@
         this.showFlag = !this.showFlag
       },
       showPrompt ($event) {
+        console.log(1)
         if ($event.target.checked) {
           this.$alert('您所申请的内容，将会转到对应的业务审核人审核，如果您申请的内容与自己的工作职责不符，将不会予以通过；请慎重申请，谢谢', '提示', {
             confirmButtonText: '确定'
@@ -237,16 +247,11 @@
       },
       addAuth (item, index) {
         // 设置两个复选框
-//        item.deliverRefund = this.deliverRefund
-//        item.warningSetting = this.warningSetting
         // 添加权限
         console.log(item)
         this.addedData.push(item)
         // 将预添加队列中的删除
         this.waitingAdd.splice(index, 1)
-        // 复位复选框
-//        this.deliverRefund = false
-//        this.warningSetting = false
       },
       cancelApply () {
         this.$confirm('确定取消申请吗?', '提示', {
@@ -262,6 +267,7 @@
       operateAuthApply () {
         // 整合数据 addedData(操作权限) + 查看权限  +  申请理由
         let _oneApply = {}
+        _oneApply.userId = this.userId
         _oneApply.operateAuthLists = this.addedData
         _oneApply.applyReason = this.operateAuthReason
 
@@ -296,6 +302,7 @@
         let _this = this
         // 整合数据 查看权限  +  申请理由
         let _oneApply = {}
+        _oneApply.userId = this.userId
         _oneApply.viewAuth = this.viewAuth
         _oneApply.applyReason = this.viewAuthReason
 
@@ -308,16 +315,12 @@
             message: '请至少选择一种权限',
             type: 'warning'
           })
-          console.log('由于无权限申请，申请被拒')
         } else if (_oneApply.applyReason.trim() === '') {
           this.$message({
             message: '申请理由不能为空',
             type: 'warning'
           })
         } else {
-          console.log('这就是一条后台数据')
-          console.log(_oneApply)
-
           // 满足申请条件，发送ajax请求
           this.$http.post('/api/apply/viewAuthApply', _oneApply).then(response => {
             if (response.errno === 0) {
@@ -335,16 +338,12 @@
       }
     },
     created () {
-      // 获取申请人基本信息
-      this.$http.get('/api/apply/userMsg').then(response => {
-        this.userMsg = response.body.data
-      }, response => {
-        // error callback
-      })
-
-      // 获取申请人已拥有的查看权限
-      this.$http.get('/api/apply/viewAuth').then(response => {
-        this.viewAuth = response.body.data
+      // 获取申请人已拥有的查看权限和基本信息
+      this.$http.get('apply/view-auth').then(response => {
+        this.viewAuthData = response.body.data.viewAuthData
+        console.log('查看权限')
+        console.log(this.viewAuthData)
+        this.userMsg = response.body.data.user
       }, response => {
         // error callback
       })
@@ -352,24 +351,52 @@
   }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
-  @import "../common/css/table.min.css"
-  .auth-application
-    margin: 0 50px
-    h5
-      margin: 10px 0
-      font-weight: 700
-    .applicant-msg, .authority, .view-content
-      margin: 10px 0 20px 0
-    .authority
-      .authority-text
-        line-height: 1.5rem
-    .view-content
-      .more-content
-        display: inline-block
-    .select-auth-wrap, .add-auth-wrap, .own-auth-wrap, .application-reason-wrap, .bottom-btn-wrap
-      margin-bottom: 50px
-    .bottom-btn-wrap
-      text-align: center
+<style scope>
+  .auth-application {
+    margin: 10px;
+  }
 
+  .applicant-msg {
+    line-height: 28px
+  }
+
+  .applicant-msg > span:first-child {
+    display: block;
+    font-weight: bold;
+  }
+
+  .authority,
+  .view-content {
+    margin: 5px 0 10px 0;
+    line-height: 34px;
+  }
+
+  .authority > .el-col:first-child,
+  .authority > .el-col:nth-child(2) {
+    font-weight: bold;
+  }
+
+  .my-table {
+    width: 400px;
+  }
+
+  .my-table td {
+    text-align: center;
+  }
+
+  .view-content .more-content {
+    display: inline-block
+  }
+
+  .select-auth-wrap,
+  .add-auth-wrap,
+  .own-auth-wrap,
+  .application-reason-wrap,
+  .bottom-btn-wrap {
+    margin-bottom: 50px;
+  }
+
+  .bottom-btn-wrap {
+    text-align: center;
+  }
 </style>

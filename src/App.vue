@@ -25,7 +25,7 @@
         </el-menu>
       </el-col>
       <el-col :xs="24" :sm="20" :md="21" :lg="22">
-        <router-view :new-msg="newMsg"></router-view>
+        <router-view :new-msg="newMsg" :user-id="userId"></router-view>
       </el-col>
     </el-row>
   </div>
@@ -36,6 +36,7 @@ export default {
   name: 'app',
   data () {
     return {
+      userId: '',
       newMsg: {}
     }
   },
@@ -50,7 +51,15 @@ export default {
     }
   },
   created () {
-    this.$http.get('/api/app/newMsg').then(response => {
+    // 获取员工工号
+    this.$http.get('app/userId').then(response => {
+      this.userId = response.body.data
+    }, response => {
+      // error callback
+    })
+
+    // 获取新消息数目
+    this.$http.get('app/newMsg').then(response => {
       this.newMsg = response.body.data
     }, response => {
       // error callback
@@ -81,6 +90,6 @@ export default {
   color: #fff;
 }
 .border-bottom{
-  border-bottom: 1px solid #99A9BF;
+  border-bottom: 1px solid #bfcbd9;
 }
 </style>

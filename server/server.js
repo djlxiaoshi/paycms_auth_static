@@ -29,6 +29,13 @@ var newsData = require('../mock/app.json');
 
 var apiRoutes = express.Router();
 
+apiRoutes.get('/app/userId', function (req, res) {
+  res.json({
+    errno: 0,
+    data: '1314521'
+  });
+});
+
 // 获取  我的权限  和 我的审批中的 新消息数目
 apiRoutes.get('/app/newMsg', function (req, res) {
   res.json({
@@ -44,6 +51,7 @@ apiRoutes.get('/apply/userMsg', function (req, res) {
   });
 });
 
+/* ------------ 权限申请--------------------- */
 apiRoutes.post('/apply/viewAuthApply', function (req, res) {
   res.json({
     errno: 0
@@ -58,10 +66,11 @@ apiRoutes.post('/apply/operateAuthApply', function (req, res) {
   console.dir(req.body);
 });
 
-apiRoutes.get('/apply/viewAuth', function (req, res) {
+// 查看权限信息
+apiRoutes.get('/apply/viewAuthData', function (req, res) {
   res.json({
     errno: 0,
-    data: authApplyData.viewAuth
+    data: authApplyData.viewAuthData
   });
 });
 

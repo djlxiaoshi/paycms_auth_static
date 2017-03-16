@@ -1,67 +1,86 @@
 {
   "userMsg": {
     "name": "李晓龙",
+    "englishNmae": "JohnLi",
     "department": "数据支付部"
   },
-  "viewAuth": [
+  "viewAuthData": [
     {
-      "id": 1,
+      "authId": "111",
       "authName": "订单查询",
-      "have": true
+      "owned": true
     },
     {
-      "id": 2,
+      "authId": "112",
       "authName": "欺诈订单",
-      "have": true
+      "owned": true
     },
     {
-      "id": 3,
+      "authId": "113",
       "authName": "统计信息",
-      "have": true
+      "owned": true
     },
     {
-      "id": 4,
+      "authId": "114",
       "authName": "产品配置",
-      "have": false
+      "owned": false
     },
     {
-      "id": 5,
+      "authId": "115",
       "authName": "收入汇总",
-      "have": false
+      "owned": false
     },
     {
-      "id": 6,
+      "authId": "116",
       "authName": "应用警报设置",
-      "have": false
+      "owned": false
     },
     {
-      "id": 7,
+      "authId": "117",
       "authName": "财务对账",
-      "have": false
+      "owned": false
+    }
+  ],
+  "operateAuthData": [
+    {
+      "authId": "222",
+      "authName": "订单操作",
+      "owned": true
+    },
+    {
+      "authId": "223",
+      "authName": "操作权限2",
+      "owned": true
+    },
+    {
+      "authId": "224",
+      "authName": "操作权限3",
+      "owned": false
+    },
+    {
+      "authId": "225",
+      "authName": "操作权限4",
+      "owned": false
     }
   ],
   "viewAuthApply": {
+    "userId": "1314521",
     "applyId": 1,
-    "username": "李晓龙",
     "department": "数据支付部",
     "role": "前端",
-    "viewAuth": [
-      "权限1",
-      "权限2",
-      "权限3"
+    "authId": [
+      "authId1",
+      "authId2",
+      "authId3"
     ],
     "reason": "这是申请理由"
   },
   "operateAuthApply": {
+    "userId": "1314521",
     "applyId": 1,
-    "username": "李晓龙",
-    "department": "数据支付部",
     "role": "前端",
-    "operateAuth": [
-      "权限1",
-      "权限2",
-      "权限3"
-    ],
+    "appid":[123,124,125],
+    "authId":["authId1", "authId2", "authId3"] ,
     "reason": "这是申请理由"
   },
   "parentMenu": [
